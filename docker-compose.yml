@@ -1,11 +1,11 @@
 services:
-  dragonfly:
+  redis-embeddings-queue:
     image: "docker.dragonflydb.io/dragonflydb/dragonfly"
     command: "--snapshot_cron '*/1 * * * *' --dbfilename dump-{timestamp} --proactor_threads=4"
     ulimits:
       memlock: -1
     ports:
-      - "6379:6379"
+      - "127.0.5.1:6379:6379"
     # For better performance, consider `host` mode instead `port` to avoid docker NAT.
     # `host` mode is NOT currently supported in Swarm Mode.
     # https://docs.docker.com/compose/compose-file/compose-file-v3/#network_mode
